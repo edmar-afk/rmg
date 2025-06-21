@@ -1,0 +1,9 @@
+{
+	"rewrites": [{ "source": "/(.*)", "destination": "/" }],
+	"build": {
+		"env": {
+			"NPM_CONFIG_FROZEN_LOCKFILE": "false",
+			"PNPM_CONFIG_FROZEN_LOCKFILE": "false"
+		}
+	}
+}
