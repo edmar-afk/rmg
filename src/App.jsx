@@ -13,6 +13,7 @@ import './charts/ChartjsConfig';
 import Dashboard from './pages/admin/Dashboard';
 import Customers from "./pages/admin/Customers";
 import Bookings from "./pages/admin/Bookings";
+import WorkerSchedules from './pages/admin/WorkerSchedules';
 function App() {
 
   const location = useLocation();
@@ -40,6 +41,11 @@ function App() {
 					exact
 					path="/admin/booking"
 					element={<Bookings />}
+				/>
+				<Route
+					exact
+					path="/admin/worker-schedules"
+					element={<WorkerSchedules />}
 				/>
 			</Routes>
 		</>

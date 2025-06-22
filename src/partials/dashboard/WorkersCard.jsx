@@ -7,38 +7,42 @@ import Image04 from "../../images/user-36-08.jpg";
 import Image05 from "../../images/user-36-09.jpg";
 import { Link } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import BookingEdit from "../../components/admin/BookingEdit";
-function Booking({ isPage }) {
+function WorkersCard({ isPage }) {
 	const customers = [
 		{
 			id: "0",
 			name: "John Doe",
-			location: "Pagadian City Atbang Palasyo Kilid",
+			location: "Pagadian City",
 			status: "Pending",
-			date: "21 Jun, 2025",
+			schedule: "25 June, 2025",
 		},
 		{
 			id: "1",
 			name: "John Doe",
 			location: "Pagadian City",
-			status: "Rejected",
-			date: "23 Jun, 2025",
+			status: "Cancelled",
+			schedule: "25 June, 2025",
 		},
 		{
 			id: "2",
 			name: "John Doe",
 			location: "Pagadian City",
-			status: "Accepted",
-			date: "25 Jun, 2025",
+			status: "Done",
+			schedule: "No schedule Today",
 		},
 	];
 
 	return (
 		<div className="w-full bg-white dark:bg-gray-800 shadow-xs rounded-xl">
 			<header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60 flex flex-row items-center justify-between">
-				<h2 className="font-semibold text-gray-800 dark:text-gray-100">Lists of Bookings</h2>
-				<Link className="font-semibold text-gray-800 dark:text-yellow-500 text-xs"></Link>
+				<h2 className="font-semibold text-gray-800 dark:text-gray-100">Lists of Technicians</h2>
+				<Link className="font-semibold text-gray-800 dark:text-yellow-500 text-xs">
+					{!isPage && (
+						<>
+							<Link to="/admin/customers">View More</Link>
+						</>
+					)}
+				</Link>
 			</header>
 			<div className="p-3">
 				<div className="overflow-x-auto">
@@ -46,17 +50,15 @@ function Booking({ isPage }) {
 						<thead className="text-xs font-semibold uppercase text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700/50">
 							<tr>
 								<th className="p-2 whitespace-nowrap">
-									<div className="font-semibold text-left">Customer Name</div>
+									<div className="font-semibold text-left">Technician Name</div>
 								</th>
 								<th className="p-2 whitespace-nowrap">
-									<div className="font-semibold text-left">Address</div>
+									<div className="font-semibold text-left">Phone Number</div>
 								</th>
 								<th className="p-2 whitespace-nowrap">
-									<div className="font-semibold text-left">Requested Date</div>
+									<div className="font-semibold text-left">Schedules</div>
 								</th>
-								<th className="p-2 whitespace-nowrap">
-									<div className="font-semibold text-center">Status</div>
-								</th>
+
 								{isPage && (
 									<th className="p-2 whitespace-nowrap">
 										<div className="font-semibold text-center">Action</div>
@@ -79,30 +81,25 @@ function Booking({ isPage }) {
 										<div className="text-left">{customer.location}</div>
 									</td>
 									<td className="p-2 whitespace-nowrap">
-										<div className="text-left">{customer.date}</div>
-									</td>
-									<td className="p-2 whitespace-nowrap">
 										<div
-											className={`text-center text-sm ${
-												customer.status === "Rejected"
+											className={`text-left text-sm ${
+												customer.schedule === "Negative" && customer.status === "Cancelled"
 													? "text-red-500"
-													: customer.status === "Pending"
-													? "text-yellow-500"
-													: customer.status === "Accepted"
-													? "text-green-500"
-													: ""
+													: customer.schedule === "No schedule Today"
+													? "text-red-400"
+													: "text-blue-500"
 											}`}>
-											{customer.status}
+											{customer.schedule}
 										</div>
 									</td>
 
-									<td className="p-2 whitespace-nowrap text-center flex flex-row items-center justify-center">
-										<DeleteIcon className="text-red-400" />
-										<BookingEdit/>
-									</td>
+									{isPage && (
+										<td className="p-2 whitespace-nowrap text-center">
+											<DeleteIcon className="text-red-400" />
+										</td>
+									)}
 								</tr>
 							))}
-							``
 						</tbody>
 					</table>
 				</div>
@@ -111,4 +108,4 @@ function Booking({ isPage }) {
 	);
 }
 
-export default Booking;
+export default WorkersCard;

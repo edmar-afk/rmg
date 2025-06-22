@@ -14,7 +14,7 @@ export default function ScheduleModal({ date }) {
 
 	return (
 		<div>
-			<Button onClick={handleOpen}>Add Schedule</Button>
+			<Button onClick={handleOpen}>Set Schedule</Button>
 			<Modal
 				aria-labelledby="transition-modal-title"
 				aria-describedby="transition-modal-description"
@@ -28,14 +28,14 @@ export default function ScheduleModal({ date }) {
 					},
 				}}>
 				<Fade in={open}>
-					<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-black shadow-lg p-4 w-11/12 sm:w-11/12 md:w-[50%] max-h-screen overflow-y-auto">
+					<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-black shadow-lg p-4 w-lg overflow-y-auto">
 						<Typography
 							id="transition-modal-title"
 							variant="h6"
-							component="h2">
-							Set Schedule on {date}
+							component="h2" className="text-center font-bold text-gray-800">
+							Set Schedule on Technicians
 						</Typography>
-						<ScheduleForm date={date} />
+						<ScheduleForm/>
 					</div>
 				</Fade>
 			</Modal>

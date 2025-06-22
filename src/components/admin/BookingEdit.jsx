@@ -1,12 +1,40 @@
-import React, { useState } from "react";import { Modal, Box, Typography, IconButton, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import React, { useState } from "react";import {	Modal,
+	Box,
+	Typography,
+	IconButton,
+	Radio,
+	RadioGroup,
+	FormControlLabel,
+	FormControl,
+	Button,
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import Swal from "sweetalert2";
 
 function BookingEdit() {
 	const [open, setOpen] = useState(false);
-	const [cancelBooking, setCancelBooking] = useState("");
+	const [bookingStatus, setBookingStatus] = useState("pending");
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+
+	const handleSubmit = () => {
+		if (!bookingStatus) {
+			Swal.fire({
+				icon: "error",
+				title: "Error",
+				text: "Please select a booking status.",
+			});
+			return;
+		}
+
+		Swal.fire({
+			icon: "success",
+			title: "Booking Updated",
+			text: `Booking has been marked as ${bookingStatus.toUpperCase()}.`,
+		});
+		handleClose();
+	};
 
 	return (
 		<div>
@@ -18,7 +46,7 @@ function BookingEdit() {
 				open={open}
 				onClose={handleClose}>
 				<Box
-					className="bg-white dark:bg-gray-800 text-black dark:text-white p-6 rounded-lg shadow-lg"
+					className="bg-white p-6 rounded-lg shadow-lg"
 					sx={{
 						position: "absolute",
 						top: "50%",
@@ -28,39 +56,42 @@ function BookingEdit() {
 					}}>
 					<Typography
 						variant="h6"
-						component="h2">
-						Edit Booking
+						component="h3"
+						className="text-gray-800 text-center">
+						John Doe requested a booking on June 21, 2025.
 					</Typography>
 
 					<FormControl
-						fullWidth
-						sx={{ mt: 3 }}>
-						<InputLabel
-							id="cancel-booking-label"
-							className="text-black dark:text-white">
-							Cancel Booking
-						</InputLabel>
-						<Select
-							labelId="cancel-booking-label"
-							value={cancelBooking}
-							label="Cancel Booking"
-							onChange={(e) => setCancelBooking(e.target.value)}
-							className="bg-white dark:bg-gray-700 text-black dark:text-white"
-							sx={{
-								"& .MuiOutlinedInput-notchedOutline": {
-									borderColor: "rgba(0,0,0,0.23)",
-								},
-								"&:hover .MuiOutlinedInput-notchedOutline": {
-									borderColor: "#1976d2",
-								},
-								"&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-									borderColor: "#1976d2",
-								},
-							}}>
-							<MenuItem value="yes">Yes</MenuItem>
-							<MenuItem value="no">No</MenuItem>
-						</Select>
+						component="fieldset"
+						sx={{ mt: 3, mb: 3 }}>
+						<RadioGroup
+							value={bookingStatus}
+							onChange={(e) => setBookingStatus(e.target.value)}>
+							<FormControlLabel
+								value="pending"
+								control={<Radio />}
+								label="Pending"
+							/>
+							<FormControlLabel
+								value="accepted"
+								control={<Radio />}
+								label="Accept"
+							/>
+							<FormControlLabel
+								value="rejected"
+								control={<Radio />}
+								label="Reject"
+							/>
+						</RadioGroup>
 					</FormControl>
+
+					<Button
+						variant="contained"
+						color="primary"
+						onClick={handleSubmit}
+						className="mt-4 w-full bg-blue-500 hover:bg-blue-600">
+						Submit
+					</Button>
 				</Box>
 			</Modal>
 		</div>

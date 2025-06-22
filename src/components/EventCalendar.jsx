@@ -1,4 +1,16 @@
-/* eslint-disable react/prop-types */ import { Menu } from "@headlessui/react";import {	add,	eachDayOfInterval,	endOfMonth,	format,	getDay,	isEqual,	isSameDay,	isSameMonth,	isToday,	parse,	parseISO,
+/* eslint-disable react/prop-types */ import { Menu } from "@headlessui/react";
+import {
+	add,
+	eachDayOfInterval,
+	endOfMonth,
+	format,
+	getDay,
+	isEqual,
+	isSameDay,
+	isSameMonth,
+	isToday,
+	parse,
+	parseISO,
 	startOfToday,
 } from "date-fns";
 import ScheduleModal from "./admin/ScheduleModal";
@@ -63,7 +75,7 @@ export default function EventCalendar() {
 				<p className="text-2xl font-bold mb-3 text-gray-800 dark:text-white">Schedule Calendar</p>
 
 				<div className="flex flex-row justify-between flex-wrap">
-					<div className="md:pr-14 p-3 lg:p-14 rounded-xl bg-gray-200 dark:bg-gray-800 flex-1">
+					<div className="md:pr-14 p-3 lg:p-14 rounded-xl bg-white dark:bg-gray-800 flex-1">
 						<div className="flex items-center">
 							<h2 className="flex-auto font-semibold text-gray-900 dark:text-white">
 								{format(firstDayCurrentMonth, "MMMM yyyy")}
@@ -113,7 +125,7 @@ export default function EventCalendar() {
 												"text-gray-400",
 											isEqual(day, selectedDay) && isToday(day) && "bg-blue-500",
 											isEqual(day, selectedDay) && !isToday(day) && "bg-blue-700 animate-bounce",
-											!isEqual(day, selectedDay) && "hover:bg-gray-200",
+											!isEqual(day, selectedDay) && "hover:bg-white",
 											(isEqual(day, selectedDay) || isToday(day)) && "font-semibold",
 											"mx-auto flex h-8 w-8 items-center justify-center rounded-full"
 										)}>
@@ -129,8 +141,10 @@ export default function EventCalendar() {
 							))}
 						</div>
 					</div>
-					<section className="mt-12 md:mt-0 h-[500px] md:ml-8 p-8 rounded-xl shadow-xl bg-gray-200 dark:bg-gray-800 flex-none w-full max-w-[400px] overflow-y-auto">
-						<h2 className="font-semibold text-gray-900  dark:text-white sticky -top-8 pb-3 bg-gray-200  dark:bg-gray-800 z-50">
+					<section
+						className="mt-12 md:mt-0 h-[500px] md:ml-8 p-8 rounded-xl'
+					 bg-white dark:bg-gray-800 flex-none w-full max-w-[400px] overflow-y-auto">
+						<h2 className="font-semibold text-gray-900  dark:text-white sticky -top-8 pb-3 bg-white  dark:bg-gray-800 z-50">
 							Schedule for{" "}
 							<time dateTime={format(selectedDay, "yyyy-MM-dd")}>{format(selectedDay, "MMM dd, yyy")}</time>
 						</h2>
