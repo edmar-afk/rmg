@@ -111,7 +111,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
 						</h3>
 						<ul className="mt-3">
 							{/* Dashboard */}
-							<SidebarLinkGroup activecondition={pathname === "/" || pathname.includes("dashboard")}>
+							<SidebarLinkGroup
+								activecondition={
+									pathname === "/" ||
+									pathname.includes("dashboard") ||
+									pathname.includes("/admin/customers") ||
+									pathname.includes("/admin/booking") ||
+									pathname.includes("/admin/worker-schedules") ||
+									pathname.includes("/admin/unregistered-users")
+								}>
 								{(handleClick, open) => {
 									return (
 										<React.Fragment>
@@ -226,7 +234,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
 													<li className="mb-1 last:mb-0">
 														<NavLink
 															end
-															to="#"
+															to="/admin/unregistered-users"
 															className={({ isActive }) =>
 																"block transition duration-150 truncate " +
 																(isActive
@@ -261,7 +269,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
 												}}>
 												<div className="flex items-center justify-between">
 													<div className="flex items-center">
-														<Person2Icon/>
+														<Person2Icon />
 														<span className="text-sm font-medium ml-2 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
 															Technician Pages
 														</span>
@@ -318,7 +326,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, variant = "default" }) {
 												}}>
 												<div className="flex items-center justify-between">
 													<div className="flex items-center">
-														<Person2Icon/>
+														<Person2Icon />
 														<span className="text-sm font-medium ml-2 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
 															Manager Pages
 														</span>

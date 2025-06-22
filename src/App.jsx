@@ -14,6 +14,7 @@ import Dashboard from './pages/admin/Dashboard';
 import Customers from "./pages/admin/Customers";
 import Bookings from "./pages/admin/Bookings";
 import WorkerSchedules from './pages/admin/WorkerSchedules';
+import UnregisteredUsers from './pages/admin/UnregisteredUsers';
 function App() {
 
   const location = useLocation();
@@ -46,6 +47,11 @@ function App() {
 					exact
 					path="/admin/worker-schedules"
 					element={<WorkerSchedules />}
+				/>
+				<Route
+					exact
+					path="/admin/unregistered-users"
+					element={<UnregisteredUsers />}
 				/>
 			</Routes>
 		</>
